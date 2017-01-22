@@ -19,6 +19,7 @@
             <div class="panel-heading">@yield('title', 'default')</div>
             <div class="panel-body">
                 @include('flash::message')
+                    @include('admin.template.partials.errors')
                 @yield('content')
 
             <!--    <a href="" class="btn btn-success" >Boton bootstrap</a> -->
