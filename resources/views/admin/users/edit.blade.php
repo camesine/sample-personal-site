@@ -16,7 +16,7 @@
 
     <div class="form-group">
         {!! Form::label('type','Tipo') !!}
-        {!! Form::select('type', ['' => 'Seleccione un nivel', 'member' => 'Miembro', 'admin' => 'Administrador'],null, ['class' => 'form-control', 'id' => 'type'] ) !!}
+        {!! Form::select('type', ['' => 'Seleccione un nivel', 'member' => 'Miembro', 'admin' => 'Administrador'],$user->type, ['class' => 'form-control', 'id' => 'type'] ) !!}
     </div>
     <div class="form-group">
         {!! Form::submit('Editar', ['class'=>'btn btn-primary']) !!}

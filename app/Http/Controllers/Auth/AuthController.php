@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller {
 
@@ -34,5 +35,18 @@ class AuthController extends Controller {
 
 		$this->middleware('guest', ['except' => 'getLogout']);
 	}
+
+	protected function getLogin(){
+	    return view('admin.auth.login');
+    }
+
+    protected function getLogout(){
+        Auth::logout();
+        return redirect()->route('admin.users.index');
+}
+
+
+    protected $loginPath = '/admin/auth/login';
+    protected $redirectTo = '/';
 
 }
