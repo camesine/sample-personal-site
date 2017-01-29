@@ -21,7 +21,11 @@ class Article extends Model {
 
 	public function tags(){
 		return $this->belongsToMany('App\Tag');
-	}	
+	}
 
+    public function scopeSearch($query, $title){
+
+        return $query->where('title', 'LIKE' , '%'.$title.'%');
+    }
 
 }

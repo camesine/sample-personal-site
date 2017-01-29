@@ -11,12 +11,16 @@
 |
 */
 
-Route::get('/', function(){
-    return view('welcome');
-});
+Route::get('/', ['as' => 'front.index', function(){
+    return view('front.index');
+}]);
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+
+    Route::get('/', function(){
+        return view('welcome');
+    });
 
     Route::resource('users','UsersController');
     Route::get('users/{id}/destroy', [
@@ -42,7 +46,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     ]);
 
     Route::resource('articles','ArticlesController');
+    Route::get('articles/{id}/destroy', [
 
+        'uses' => 'articlesController@destroy',
+        'as' => 'admin.articles.destroy',
+
+    ]);
+
+    Route::get('images',[
+        'uses' => 'imagesController@index',
+        'as' => 'admin.images.index'
+
+    ]);
 
 
 });
@@ -62,6 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         'uses' => 'Auth\AuthController@getLogout',
         'as' => 'admin.auth.logout'
     ]);
+
 
 
   //  Route::get('admin/auth/logout','Auth\AuthController@getlogout');
